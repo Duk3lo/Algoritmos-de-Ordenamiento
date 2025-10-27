@@ -1,18 +1,27 @@
-## Getting Started
+# Métodos de Ordenamiento en Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Proyecto simple que muestra tres tipos de métodos de ordenamiento implementados en Java:
 
-## Folder Structure
+- **Selección**
+- **Inserción**
+- **Burbuja**
 
-The workspace contains two folders by default, where:
+El programa permite elegir el tipo de ordenamiento, el tipo de orden (ascendente o descendente) y si se quieren ver los pasos del proceso.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Capturas del programa
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+### Menú principal
+![Menú](assets/menu.png)
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+### Método Selección
+![Selección](assets/selection.png)
 
-## Dependency Management
+### Método Inserción
+![Inserción](assets/insertion.png)
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### Método Burbuja
+![Burbuja](assets/burbble.png)
+
+---
+
+Desarrollado como práctica de los métodos básicos de ordenamiento en Java.

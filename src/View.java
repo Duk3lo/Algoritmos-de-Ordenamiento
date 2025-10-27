@@ -31,7 +31,7 @@ public class View {
         }
         return option;
     }
-    
+
     public void showOrder(){
         System.out.println("\n-Seleccione el Orden-");
         System.out.println("1-> Ascendente");
@@ -39,10 +39,16 @@ public class View {
         System.out.println("Seleccione la Opcion");
     }
 
-     public void showPasosMenu(int [] numeros, boolean ver){
+    public void showPasosMenu(int [] numeros, boolean ver){
         System.out.println("\n-Ver pasos?-");
         System.out.println("1-> Si");
         System.out.println("2-> No");
         System.out.println("Seleccione la Opcion");
+    }
+
+    public void close() {
+        if (scanner != null) {
+            scanner.close();
+        }
     }
 }
