@@ -2,93 +2,101 @@ public class SortSelection {
 
     public int[] sort(int[] numeros, boolean asc, boolean pasos) {
         if (asc) {
-            return sortAscendente(numeros, pasos);
+            return insertionAscendente(numeros, pasos);
         } else {
-            return sortDsendente(numeros, pasos);
+            return insertionDescendente(numeros, pasos);
         }
     }
 
-    private int[] sortAscendente(int[] numeros, boolean pasos) {
+    // Insertion ascendente
+    private int[] insertionAscendente(int[] numeros, boolean pasos) {
         int n = numeros.length;
         int comparaciones = 0;
-        int cambios = 0;
+        int movimientos = 0;
 
         System.out.print("Arreglo original -> ");
         printArray(numeros);
 
-        for (int i = 0; i < n - 1; i++) {
-            int minIdx = i;
-            for (int j = i + 1; j < n; j++) {
+        for (int i = 1; i < n; i++) {
+            int key = numeros[i];
+            int j = i - 1;
+
+            if (pasos) {
+                System.out.println("Insertando " + key + " en la sublista [0.." + (i - 1) + "]");
+            }
+
+            while (j >= 0) {
                 comparaciones++;
-                if (numeros[j] < numeros[minIdx]) {
-                    minIdx = j;
+                if (numeros[j] > key) {
+                    numeros[j + 1] = numeros[j];
+                    movimientos++;
+                    if (pasos) {
+                        System.out.print("Desplazar: " + numeros[j] + " de pos " + j + " a pos " + (j + 1) + " -> ");
+                        printArray(numeros);
+                    }
+                    j--;
+                } else {
+                    break;
                 }
             }
-            if (minIdx != i) {
-                if (pasos) {
-                    System.out.println("Intercambio: " + numeros[i] + " <-> " + numeros[minIdx]);
-                }
-                int temp = numeros[i];
-                numeros[i] = numeros[minIdx];
-                numeros[minIdx] = temp;
-                cambios++;
-                if (pasos) {
-                    System.out.print("Estado actual -> ");
-                    printArray(numeros);
-                }
-            } else {
-                if (pasos) {
-                    System.out.println("Posición " + i + " ya correcta.");
-                }
+            numeros[j + 1] = key;
+            if (pasos) {
+                System.out.print("Insertado " + key + " en pos " + (j + 1) + " -> ");
+                printArray(numeros);
             }
         }
 
-        return new int[]{comparaciones, cambios};
+        return new int[] { comparaciones, movimientos };
     }
 
-    private int[] sortDsendente(int[] numeros, boolean pasos) {
+    // Insertion descendente
+    private int[] insertionDescendente(int[] numeros, boolean pasos) {
         int n = numeros.length;
         int comparaciones = 0;
-        int cambios = 0;
+        int movimientos = 0;
 
         System.out.print("Arreglo original -> ");
         printArray(numeros);
 
-        for (int i = 0; i < n - 1; i++) {
-            int maxIdx = i;
-            for (int j = i + 1; j < n; j++) {
+        for (int i = 1; i < n; i++) {
+            int key = numeros[i];
+            int j = i - 1;
+
+            if (pasos) {
+                System.out.println("Insertando " + key + " (descendente) en la sublista [0.." + (i - 1) + "]");
+            }
+
+            // desplazar elementos menores que key hacia la derecha
+            while (j >= 0) {
                 comparaciones++;
-                if (numeros[j] > numeros[maxIdx]) {
-                    maxIdx = j;
+                if (numeros[j] < key) {
+                    numeros[j + 1] = numeros[j];
+                    movimientos++;
+                    if (pasos) {
+                        System.out.print("Desplazar: " + numeros[j] + " de pos " + j + " a pos " + (j + 1) + " -> ");
+                        printArray(numeros);
+                    }
+                    j--;
+                } else {
+                    break;
                 }
             }
-            if (maxIdx != i) {
-                if (pasos) {
-                    System.out.println("Intercambio: " + numeros[i] + " <-> " + numeros[maxIdx]);
-                }
-                int temp = numeros[i];
-                numeros[i] = numeros[maxIdx];
-                numeros[maxIdx] = temp;
-                cambios++;
-                if (pasos) {
-                    System.out.print("Estado actual -> ");
-                    printArray(numeros);
-                }
-            } else {
-                if (pasos) {
-                    System.out.println("Posición " + i + " ya correcta.");
-                }
+            numeros[j + 1] = key;
+            if (pasos) {
+                System.out.print("Insertado " + key + " en pos " + (j + 1) + " -> ");
+                printArray(numeros);
             }
         }
 
-        return new int[]{comparaciones, cambios};
+        return new int[] { comparaciones, movimientos };
     }
 
     public void printArray(int[] numeros) {
         System.out.print("[");
         for (int i = 0; i < numeros.length; i++) {
             System.out.print(numeros[i]);
-            if (i < numeros.length - 1) System.out.print(", ");
+            if (i < numeros.length - 1)
+                System.out.print(", ");
         }
         System.out.println("]");
     }

@@ -4,15 +4,13 @@ public class App {
     public static void main(String[] args) throws Exception {
         View view = new View();
         int[] numero = new int[] { 19, 24, -19, -28, 5, 30, -12, 34, -9, 52, 0, 45 };
-        boolean running = true;
 
-        while (running) {
+        while (true) {
             view.showMenu();
             int option = view.inputOption(4);
 
             if (option == 4) {
                 System.out.println("Adios");
-                running = false;
                 break;
             }
 
@@ -23,12 +21,11 @@ public class App {
             int pasos = view.inputOption(2);
             boolean verPasos = (pasos == 1);
 
-            int[] copia = Arrays.copyOf(numero, numero.length);
-
             switch (option) {
                 case 1:
                     System.out.println("\n--- Método: Selección ---");
                     SortSelection selection = new SortSelection();
+                    int[] copia = Arrays.copyOf(numero, numero.length);
                     int[] resSel = selection.sort(copia, orderOpt, verPasos);
                     System.out.print("Arreglo ordenado -> ");
                     selection.printArray(copia);
